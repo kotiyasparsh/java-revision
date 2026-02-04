@@ -1,6 +1,11 @@
 package EncapsulationDemo;
 
+/*it keep your properties private ( keep your data like medicin capsul ) but accesing data
+is public through getter and setter */
 
+
+/*It ensures that the internal state of an object is hidden from the outside world, allowing
+access only through well-defined public interfaces like getter and setter methods.*/
 class car {
     //properties of class
     String brand;
@@ -32,7 +37,8 @@ class car {
         System.out.println("##############Constructor called############");
         this.brand = brand;
         this.color = color;
-        this.speed = speed;
+//        this.speed = speed;
+        setSpeed(speed);   // using setter in constructor to avoid -ve value
     }
     // calling constructor for driver object of car class
     public car(String name,int age, String owner){
@@ -44,17 +50,22 @@ class car {
     //############# getter || setter #####################
 // defining getter
     public int getSpeed() {
+
         return speed;
     }
 //    defining setter
     public void setSpeed(int speed) {
-        this.speed = speed;
+        if(speed<0){
+            speed = 0;
+            this.speed = speed;
+        }
+
     }
 }
 public class EncapsulationDemo {
     public static void main(String[] args) {
-        car car1 = new car("kia","grey",150);
-        car1.speed = 500;
+        car car1 = new car("kia","grey",-150);
+//        car1.speed = -500;
         car1.drive();
     }
 
