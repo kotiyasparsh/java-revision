@@ -4,7 +4,7 @@ package InheritanceDemo;
  * Represents a car with a brand, speed, and number of doors.
  * Inherits common vehicle properties from the Vehical class.
  */
-public class car extends Vehical {
+public class car extends Vehicle { // changed superclass to Vehicle
 
     // number of doors for this car; default 0 if not set
     private int doors;

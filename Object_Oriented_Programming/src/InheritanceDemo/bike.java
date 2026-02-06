@@ -1,16 +1,16 @@
 package InheritanceDemo;
 
 /**
- * bike extends Vehical to reuse brand/speed fields.
- * The 'hascarrier' field is inherited from Vehical and set here.
+ * bike extends Vehicle to reuse brand/speed fields.
+ * The 'hascarrier' field is inherited from Vehicle and set here.
  */
-public class bike extends Vehical{
+public class bike extends Vehicle {
     //    public Boolean hascarrier;
 
 
     public bike(String brand, int speed, Boolean hascarrier) {
         super(brand, speed);
-        // sets inherited public Boolean hascarrier defined in Vehical
+        // sets inherited public Boolean hascarrier defined in Vehicle
         this.hascarrier = hascarrier;
     }
 }
