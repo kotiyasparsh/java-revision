@@ -1,7 +1,34 @@
 
+//###########coustomException################
+class BookUnavailabeException extends Exception{
+
+    public BookUnavailabeException(String message){
+        super(message);
+    }
+
+}
+
+
+
+
 class Library{
     int availableBooks = 3;
 
+    public void borrowBook(int bookRequestcount) throws Exception {
+
+        if(bookRequestcount > availableBooks)
+            /*throws our own costum exception */
+            throw new BookUnavailabeException ("Not enough book available");
+        if(bookRequestcount < 0)
+            throw new Exception("You must request at least 1 book");
+
+
+
+    }
+
+
+
+/*
 //#################Throws###########################
 //handels the exception who call the method
     public void borrowBook(int bookRequestcount) throws Exception {
@@ -14,6 +41,9 @@ class Library{
 
 
     }
+ */
+
+
 
 //
 ////#################Throw###########################
@@ -72,7 +102,10 @@ public class LibraryDemo {
         Library library = new Library();
         try{
             library.borrowBook(4);
-        } catch (Exception e){
+        }catch(BookUnavailabeException e){
+            e.printStackTrace();
+        }
+        catch (Exception e){
             System.out.println("Expected Occurred: "+ e.getMessage());
 //            System.out.println("Expected Occurred");
         }
