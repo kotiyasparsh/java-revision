@@ -22,9 +22,9 @@ public class ExceptionDemo {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Excessing invalid index");
         } catch(ArithmeticException e){
-            System.out.println("AirthmetichException");
+            System.out.println("ArithmeticException");
         } finally {
-//            allways run even exception is there or not Note: to close database connection
+//            always run even exception is there or not Note: to close database connections and use for management
 
         }
 

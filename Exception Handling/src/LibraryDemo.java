@@ -2,29 +2,80 @@
 class Library{
     int availableBooks = 3;
 
-        public void borrowBook(int bookRequest){
+//#################Throws###########################
+//handels the exception who call the method
+    public void borrowBook(int bookRequestcount) throws Exception {
 
-            try{
-                int [] books = {101,102,103};
-                System.out.println("Book Requested : "+books[bookRequest]);
-            } catch ( ArrayIndexOutOfBoundsException e) {
-                System.out.println("Exception occurred: Requested a wrong book");
-            }catch (Exception e) {
-                System.out.println("Exception occurred: Requested a wrong book");
-            } finally {
-//                it is use to resource managment so we can use this block without catch block
-                System.out.println("finally block");
-            }
+        if(bookRequestcount > availableBooks)
+            throw new Exception ("Not enough book available");
+        if(bookRequestcount < 0)
+            throw new Exception("You must request at least 1 book");
 
-        }
+
+
+    }
+
+//
+////#################Throw###########################
+//
+//    public void borrowBook(int bookRequestcount){
+//
+//        try{
+//            if(bookRequestcount > availableBooks){
+//                throw new Exception ("Not enough book available");
+//            }
+//
+//        } catch ( ArrayIndexOutOfBoundsException e) {
+//
+//            System.out.println("Exception occurred: Requested a wrong book");
+//
+//        }catch (Exception e) {
+//
+//            System.out.println("Exception occurred: Requested a wrong book");
+//
+//        } finally {
+////                it is use to resource management so we can use this block without catch block
+//            System.out.println("finally block");
+//        }
+
+
+
+
+
+
+
+
+//        public void borrowBook(int bookRequest){
+//
+//            try{
+//                int [] books = {101,102,103};
+//                System.out.println("Book Requested : "+books[bookRequest]);
+//            } catch ( ArrayIndexOutOfBoundsException e) {
+//                System.out.println("Exception occurred: Requested a wrong book");
+//            }catch (Exception e) {
+//                System.out.println("Exception occurred: Requested a wrong book");
+//            } finally {
+////                it is use to resource management so we can use this block without catch block
+//                System.out.println("finally block");
+//            }
+//
+//        }
 
 }
 
 
 
 public class LibraryDemo {
-    public static void main(String[] args) {
+
+//    here main method is calling so exception will be handel by main method directly
+    public static void main(String[] args)  {
         Library library = new Library();
-        library.borrowBook(4);
+        try{
+            library.borrowBook(4);
+        } catch (Exception e){
+            System.out.println("Expected Occurred: "+ e.getMessage());
+//            System.out.println("Expected Occurred");
+        }
+
     }
 }
