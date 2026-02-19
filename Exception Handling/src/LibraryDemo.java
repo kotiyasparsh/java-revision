@@ -8,20 +8,29 @@ class BookUnavailabeException extends Exception{
 
 }
 
+class InvalidMemberException extends Exception{
+
+    public InvalidMemberException(String message){
+        super(message);
+    }
+
+}
+
 
 
 
 class Library{
     int availableBooks = 3;
 
-    public void borrowBook(int bookRequestcount) throws Exception {
+    public void borrowBook(String memberName,int bookRequestcount) throws Exception {
 
         if(bookRequestcount > availableBooks)
             /*throws our own costum exception */
             throw new BookUnavailabeException ("Not enough book available");
         if(bookRequestcount < 0)
             throw new Exception("You must request at least 1 book");
-
+        if(memberName == null || memberName.isEmpty())
+            throw new InvalidMemberException("Invalid Memebership");
 
 
     }
@@ -101,8 +110,12 @@ public class LibraryDemo {
     public static void main(String[] args)  {
         Library library = new Library();
         try{
-            library.borrowBook(4);
+            library.borrowBook("Sparsh",1);
+            library.borrowBook(null,1);
         }catch(BookUnavailabeException e){
+            e.printStackTrace();
+        }
+        catch (InvalidMemberException e){
             e.printStackTrace();
         }
         catch (Exception e){
