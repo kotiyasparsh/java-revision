@@ -12,14 +12,29 @@ public class StreamsDemo {
 
 
 //      Using  Stream
-        Stream<String> stream = items.stream();
+        Stream <String> stream = items.stream();
         stream.forEach(System.out::println);
 
+        /*
         Stream<String> streamnew = items.stream();
-       Stream<String>filteredStream = stream.filter(name -> name.startsWith("b"));
-        stream.forEach(System.out::println);
+       Stream<String>filteredStream
+               = streamnew.filter(name -> name.startsWith("b"));
+        filteredStream.forEach(System.out::println);
+        */
+//more persion of stream
 
+        items.stream()
+                .filter(name -> name.startsWith("b"))
+                .forEach(System.out::println);
 
+/*  USE CASE:
+*   1.Filtering
+*   2.Mapping
+*   3.Aggregation
+*   4.Seraching
+*   5.Iteration
+*
+* */
     }
 
 }
