@@ -2,7 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.Locale.filter;
+//import static java.util.stream.Nodes.collect;
 
 public class FirstStreamDemo {
 
@@ -24,6 +28,12 @@ public class FirstStreamDemo {
 //        Stream <Integer> evenNumbers2 = integerStream2.toList();
         List<Integer> evenNumbers2 = integerStream2.toList();
         System.out.println("Even Number with Stream: " + evenNumbers2);
+
+////    Iteration 3
+//        List<Integer> evenNumber3 = numbers.stream();
+//        .filter(integer) -> integer % 2 ==0)
+//        .collect(Collectors.toList());
+//        System.out.println("Even Number with Stream: " + evenNumbers2);
     }
 
         static Predicate <Integer> p1 = new Predicate<Integer>(){
