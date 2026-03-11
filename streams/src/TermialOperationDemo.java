@@ -8,7 +8,7 @@ public class TermialOperationDemo {
     public static void main(String[] args) {
 
 //        ############REDUCE#############
-//        TermialOperationDemo
+//
 
         System.out.println("############REDUCE#############");
         // Create a list of integers
