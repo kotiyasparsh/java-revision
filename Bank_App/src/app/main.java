@@ -3,10 +3,7 @@ package app;
 import service.Bankservice;
 import service.impl.BankServiceImpl;
 
-import javax.swing.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class main {
     public static void main(String[] args) {
@@ -36,9 +33,9 @@ public class main {
                 case "2" -> deposit(scanner, bankservice);
                 case "3" -> withdraw(scanner, bankservice);
                 case "4" -> transfer(scanner, bankservice);
-                case "5" -> satment(scanner);
+                case "5" -> statement(scanner, bankservice);
                 case "6" -> listAccounts(scanner, bankservice);
-                case "7" -> searchAccounts(scanner);
+                case "7" -> searchAccounts(scanner, bankservice);
                 case "0" -> running = false;
             }
 
@@ -105,7 +102,13 @@ public class main {
         bankservice.transfer(from,to, amount,"Transferd");
     }
 
-    private static void satment(Scanner scanner) {
+    private static void statement(Scanner scanner, Bankservice bankservice) {
+        System.out.println(" Account number ");
+        String account = scanner.nextLine().trim();
+        bankservice.getStatement(account).forEach(t -> {
+            System.out.println(t.getTimestamp() + " | " + t.getType() + " | " + t.getAmount() + " | " + t.getNote());
+        });
+
     }
 
     private static void listAccounts(Scanner scanner, Bankservice bankservice) {
@@ -114,7 +117,11 @@ public class main {
         });
     }
 
-    private static void searchAccounts(Scanner scanner) {
+    private static void searchAccounts(Scanner scanner, Bankservice bankservice) {
+        System.out.println("Customer name contains");
+        String q = scanner.nextLine().trim();
+        bankservice.searchAccountByCustomerName(q);
+
     }
 
 

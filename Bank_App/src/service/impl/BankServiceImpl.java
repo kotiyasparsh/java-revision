@@ -1,13 +1,16 @@
 package service.impl;
 
 import domain.Account;
+import domain.Customer;
 import domain.Transaction;
 import domain.Type;
 import repository.AccountRepository;
+import repository.CustomerRepsitory;
 import repository.TransactionRepository;
 import service.Bankservice;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +20,7 @@ public class BankServiceImpl implements Bankservice {
 
     private final AccountRepository accountRepository = new AccountRepository();
     private final TransactionRepository transactionRepository = new TransactionRepository();
-
+    private final CustomerRepsitory customerRepsitory = new CustomerRepsitory();
     @Override
     public String openAccount(String name, String email, String accountType) {
 
@@ -84,6 +87,26 @@ public class BankServiceImpl implements Bankservice {
                 UUID.randomUUID().toString(),amount, LocalDateTime.now(), note , Type.TRANSFER_IN));
 
     }
+
+    @Override
+    public List<Transaction> getStatement(String account) {
+        return transactionRepository.findByAccount(account).stream()
+                .sorted(Comparator.comparing(Transaction::getTimestamp))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Account> searchAccountByCustomerName(String q) {
+        String query = (q == null) ? "" : q.toLowerCase();
+        List<Account> result = new ArrayList<>();
+        for(Customer c : customerRepsitory.findAll()){
+            if(c.getName().toLowerCase().contains(query))
+                result.addAll(accountRepository.findByCustomerId(c.getId()));
+        }
+        result.sort(Comparator.comparing(Account:: getAccountNumber));
+        return result;
+    }
+
 
     private String getAccountNumber() {
         int size = accountRepository.findAll().size() + 1;
