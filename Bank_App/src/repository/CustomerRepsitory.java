@@ -15,4 +15,8 @@ public class CustomerRepsitory {
     public List<Customer> findAll() {
     return new ArrayList<>(customersById.values());
     }
+
+    public void save(Customer c) {
+        customersById.put(c.getId(),c);
+    }
 }
